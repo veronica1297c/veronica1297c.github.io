@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- EDIT: page title and description (these show up in Google and link previews) -->
+  <title>Your Name | PhD Student in Your Field</title>
+  <meta name="description" content="Your Name is a PhD student at Your University working on your research area. Research, publications, and coursework.">
+  <meta property="og:title" content="Your Name | PhD Student in Your Field">
+  <meta property="og:description" content="Research, publications, and coursework.">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#F7F8F8">
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔬</text></svg>">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #F7F8F8;
+      --ink: #1C2733;
+      --muted: #586674;
+      --rule: #DCE1E5;
+      --accent: #1F5C63;
+      --accent-soft: #E3EEEF;
+
+      --serif: "Newsreader", Georgia, "Times New Roman", serif;
+      --sans: "Public Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #12181D;
+        --ink: #E4E9ED;
+        --muted: #98A5B0;
+        --rule: #2A343C;
+        --accent: #7FC4CB;
+        --accent-soft: #1B2B30;
+      }
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 1rem;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration-thickness: 1px;
+      text-underline-offset: 0.2em;
+    }
+    a:hover { text-decoration-thickness: 2px; }
+
+    :focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+      border-radius: 2px;
+    }
+
+    .skip-link {
+      position: absolute;
+      left: -999px;
+      top: 0.5rem;
+      background: var(--ink);
+      color: var(--bg);
+      padding: 0.5rem 0.75rem;
+      z-index: 10;
+    }
+    .skip-link:focus { left: 0.5rem; }
+
+    /* ---------- Page layout ---------- */
+    .page {
+      max-width: 68rem;
+      margin: 0 auto;
+      padding: 4rem 1.5rem 3rem;
+      display: grid;
+      grid-template-columns: 15rem minmax(0, 1fr);
+      column-gap: 5rem;
+    }
+
+    /* ---------- Sidebar ---------- */
+    .sidebar {
+      position: sticky;
+      top: 4rem;
+      align-self: start;
+    }
+
+    .name {
+      font-family: var(--serif);
+      font-weight: 500;
+      font-size: 2.25rem;
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+      margin: 0 0 0.75rem;
+    }
+
+    .tagline {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    .site-nav { margin-top: 2.5rem; }
+    .site-nav ul { list-style: none; margin: 0; padding: 0; }
+
+    .site-nav a {
+      display: block;
+      padding: 0.3rem 0 0.3rem 1rem;
+      border-left: 2px solid var(--rule);
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.95rem;
+    }
+    .site-nav a:hover { color: var(--ink); }
+    .site-nav a[aria-current="true"] {
+      color: var(--ink);
+      border-left-color: var(--accent);
+      font-weight: 500;
+    }
+
+    .contact-links {
+      list-style: none;
+      margin: 2.5rem 0 0;
+      padding: 0;
+      font-size: 0.9rem;
+    }
+    .contact-links li + li { margin-top: 0.35rem; }
+
+    /* ---------- Main content ---------- */
+    main { min-width: 0; }
+
+    section {
+      padding-bottom: 4rem;
+      scroll-margin-top: 3rem;
+    }
+    section + section {
+      border-top: 1px solid var(--rule);
+      padding-top: 3rem;
+    }
+
+    h2 {
+      font-family: var(--serif);
+      font-weight: 500;
+      font-size: 1.75rem;
+      line-height: 1.2;
+      letter-spacing: -0.005em;
+      margin: 0 0 1.5rem;
+    }
+
+    h3 {
+      font-family: var(--serif);
+      font-weight: 600;
+      font-size: 1.15rem;
+      line-height: 1.3;
+      margin: 2.5rem 0 1rem;
+    }
+
+    p { margin: 0 0 1rem; max-width: 40rem; }
+
+    .lede {
+      font-family: var(--serif);
+      font-size: 1.4rem;
+      line-height: 1.5;
+      max-width: 36rem;
+    }
+
+    .muted { color: var(--muted); }
+
+    /* ---------- Research: interests ---------- */
+    .interests {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 0 0 0.5rem;
+      padding: 0;
+    }
+    .interests li {
+      background: var(--accent-soft);
+      color: var(--ink);
+      font-size: 0.9rem;
+      padding: 0.2rem 0.75rem;
+      border-radius: 999px;
+    }
+
+    /* ---------- Research: projects & publications ---------- */
+    .entry { margin: 0 0 1.75rem; max-width: 40rem; }
+    .entry-title {
+      font-weight: 600;
+      margin: 0;
+      line-height: 1.4;
+    }
+    .entry-meta {
+      margin: 0.15rem 0 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+    .entry-desc { margin: 0.4rem 0 0; }
+    .entry-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin: 0.4rem 0 0;
+      padding: 0;
+      list-style: none;
+      font-size: 0.9rem;
+    }
+    .me { color: var(--ink); font-weight: 500; }
+
+    /* ---------- Courses ---------- */
+    .course-list { list-style: none; margin: 0; padding: 0; }
+    .course-list li {
+      display: grid;
+      grid-template-columns: 7rem minmax(0, 1fr);
+      column-gap: 1.5rem;
+      padding: 0.7rem 0;
+      border-bottom: 1px solid var(--rule);
+    }
+    .course-list li:first-child { border-top: 1px solid var(--rule); }
+    .course-term { color: var(--muted); font-size: 0.9rem; padding-top: 0.1rem; }
+    .course-name { font-weight: 500; }
+    .course-detail { display: block; color: var(--muted); font-size: 0.9rem; }
+
+    /* ---------- Footer ---------- */
+    footer {
+      grid-column: 2;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--rule);
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    /* ---------- Small screens ---------- */
+    @media (max-width: 52rem) {
+      .page {
+        display: block;
+        padding: 2.5rem 1.25rem 2rem;
+      }
+      .sidebar { position: static; margin-bottom: 3rem; }
+      .name { font-size: 2rem; }
+      .site-nav { margin-top: 1.5rem; }
+      .site-nav ul { display: flex; flex-wrap: wrap; gap: 0.25rem 1.25rem; }
+      .site-nav a { padding: 0.2rem 0; border-left: 0; border-bottom: 2px solid transparent; }
+      .site-nav a[aria-current="true"] { border-bottom-color: var(--accent); }
+      .contact-links { margin-top: 1.5rem; display: flex; flex-wrap: wrap; gap: 0.25rem 1.25rem; }
+      .contact-links li + li { margin-top: 0; }
+      .course-list li { grid-template-columns: 1fr; }
+      .course-term { order: 2; margin-top: 0.1rem; }
+      footer { margin-top: 1rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+    }
+
+    @media print {
+      .site-nav { display: none; }
+      .sidebar { position: static; }
+    }
+  </style>
+</head>
+
+<body>
+  <a class="skip-link" href="#about">Skip to content</a>
+
+  <div class="page">
+
+    <!-- ======================= SIDEBAR ======================= -->
+    <header class="sidebar">
+      <!-- EDIT: your name and a one-line description -->
+      <h1 class="name">Your Name</h1>
+      <p class="tagline">PhD student in Your Field at Your University</p>
+
+      <nav class="site-nav" aria-label="Sections">
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#research">Research</a></li>
+          <li><a href="#courses">Courses</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <!-- EDIT: swap in your real links; delete any you don't use -->
+      <ul class="contact-links">
+        <li><a href="mailto:you@university.edu">Email</a></li>
+        <li><a href="https://scholar.google.com/">Google Scholar</a></li>
+        <li><a href="https://github.com/your-username">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/your-username">LinkedIn</a></li>
+        <li><a href="cv.pdf">CV (PDF)</a></li>
+      </ul>
+    </header>
+
+    <!-- ======================= MAIN ======================= -->
+    <main id="main">
+
+      <!-- ---------- About ---------- -->
+      <section id="about" aria-labelledby="about-h">
+        <h2 id="about-h">About</h2>
+        <!-- EDIT: one sentence a stranger could repeat to a friend -->
+        <p class="lede">I study how [your topic] works, with the goal of [what it could change or improve].</p>
+        <!-- EDIT: two short paragraphs: what you do now, and how you got here -->
+        <p>
+          I'm a [year]-year PhD student in [department] at [university], advised by
+          <a href="https://example.edu">Advisor Name</a>. My work sits at the intersection of
+          [area one] and [area two], using [methods or tools] to answer questions about [what].
+        </p>
+        <p>
+          Before this, I studied [degree and subject] at [school], where I worked on [earlier project].
+          Outside the lab, I [hobby or interest that makes you memorable].
+        </p>
+      </section>
+
+      <!-- ---------- Research ---------- -->
+      <section id="research" aria-labelledby="research-h">
+        <h2 id="research-h">Research</h2>
+
+        <p>
+          My research asks [the big question in one sentence]. I'm currently focused on:
+        </p>
+        <!-- EDIT: 3 to 6 interests -->
+        <ul class="interests" aria-label="Research interests">
+          <li>Interest one</li>
+          <li>Interest two</li>
+          <li>Interest three</li>
+          <li>Interest four</li>
+        </ul>
+
+        <h3>Current projects</h3>
+
+        <!-- EDIT: copy this block for each project -->
+        <article class="entry">
+          <p class="entry-title">Project title in plain language</p>
+          <p class="entry-meta">Ongoing, with Collaborator Name and Collaborator Name</p>
+          <p class="entry-desc">
+            Two sentences: the problem, then what you're doing about it and what you've found so far.
+          </p>
+          <ul class="entry-links">
+            <li><a href="#">Code</a></li>
+            <li><a href="#">Project page</a></li>
+          </ul>
+        </article>
+
+        <article class="entry">
+          <p class="entry-title">Second project title</p>
+          <p class="entry-meta">Under review, with Collaborator Name</p>
+          <p class="entry-desc">
+            Keep it specific. Say what you measured, built, or proved, and why someone outside your subfield should care.
+          </p>
+          <ul class="entry-links">
+            <li><a href="#">Preprint</a></li>
+          </ul>
+        </article>
+
+        <h3>Publications and talks</h3>
+
+        <!-- EDIT: newest first. Wrap your own name in <span class="me"> -->
+        <article class="entry">
+          <p class="entry-title">Title of your paper</p>
+          <p class="entry-meta">
+            <span class="me">Your Name</span>, Coauthor One, Coauthor Two.
+            <em>Venue or Journal Name</em>, 2026.
+          </p>
+          <ul class="entry-links">
+            <li><a href="#">PDF</a></li>
+            <li><a href="#">Code</a></li>
+            <li><a href="#">Slides</a></li>
+          </ul>
+        </article>
+
+        <article class="entry">
+          <p class="entry-title">Title of your poster or talk</p>
+          <p class="entry-meta">
+            <span class="me">Your Name</span>. Poster presented at <em>Conference Name</em>, 2025.
+          </p>
+          <ul class="entry-links">
+            <li><a href="#">Poster</a></li>
+          </ul>
+        </article>
+      </section>
+
+      <!-- ---------- Courses ---------- -->
+      <section id="courses" aria-labelledby="courses-h">
+        <h2 id="courses-h">Courses</h2>
+        <p>
+          Graduate coursework that shapes how I approach my research. Where I've kept notes or project work, I've linked it.
+        </p>
+
+        <!-- EDIT: group however tells your story best (by theme, by degree, by year) -->
+        <h3>Methods</h3>
+        <ul class="course-list">
+          <li>
+            <span class="course-term">Fall 2025</span>
+            <span>
+              <span class="course-name">Advanced Statistical Methods</span>
+              <span class="course-detail">STAT 6xx, Your University. Final project: <a href="#">write-up</a></span>
+            </span>
+          </li>
+          <li>
+            <span class="course-term">Spring 2025</span>
+            <span>
+              <span class="course-name">Machine Learning</span>
+              <span class="course-detail">CS 6xx, Your University</span>
+            </span>
+          </li>
+        </ul>
+
+        <h3>Domain</h3>
+        <ul class="course-list">
+          <li>
+            <span class="course-term">Fall 2024</span>
+            <span>
+              <span class="course-name">Course in Your Subfield</span>
+              <span class="course-detail">DEPT 5xx, Your University</span>
+            </span>
+          </li>
+          <li>
+            <span class="course-term">Spring 2024</span>
+            <span>
+              <span class="course-name">Another Course Title</span>
+              <span class="course-detail">DEPT 5xx, Other University (online)</span>
+            </span>
+          </li>
+        </ul>
+
+        <h3>Independent study</h3>
+        <ul class="course-list">
+          <li>
+            <span class="course-term">2025</span>
+            <span>
+              <span class="course-name">Course or certificate title</span>
+              <span class="course-detail">Coursera, edX, or similar. <a href="#">Certificate</a></span>
+            </span>
+          </li>
+        </ul>
+      </section>
+
+      <!-- ---------- Contact ---------- -->
+      <section id="contact" aria-labelledby="contact-h">
+        <h2 id="contact-h">Contact</h2>
+        <p>
+          I'm always glad to hear from people working on related problems, prospective students,
+          and potential collaborators. The easiest way to reach me is by
+          <a href="mailto:you@university.edu">email</a>.
+        </p>
+        <p class="muted">Your Department, Your University, City, Country</p>
+      </section>
+    </main>
+
+    <footer>
+      Last updated September 2026.
+    </footer>
+  </div>
+
+  <script>
+    // Highlights the nav link for the section currently in view.
+    (function () {
+      var links = document.querySelectorAll('.site-nav a');
+      var sections = [];
+      links.forEach(function (link) {
+        var el = document.querySelector(link.getAttribute('href'));
+        if (el) sections.push({ el: el, link: link });
+      });
+      if (!sections.length) return;
+
+      function update() {
+        var marker = window.innerHeight * 0.3;
+        var current = sections[0];
+        sections.forEach(function (s) {
+          if (s.el.getBoundingClientRect().top <= marker) current = s;
+        });
+        // Last section wins when scrolled to the bottom of the page.
+        if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 4) {
+          current = sections[sections.length - 1];
+        }
+        sections.forEach(function (s) {
+          if (s === current) s.link.setAttribute('aria-current', 'true');
+          else s.link.removeAttribute('aria-current');
+        });
+      }
+
+      window.addEventListener('scroll', update, { passive: true });
+      window.addEventListener('resize', update);
+      update();
+    })();
+  </script>
+</body>
+</html>
