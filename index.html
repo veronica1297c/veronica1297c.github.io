@@ -219,6 +219,49 @@
     }
     .me { color: var(--ink); font-weight: 500; }
 
+    /* ---------- Figures and photos ---------- */
+    .shot { margin: 0; min-width: 0; }
+    .shot img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border: 1px solid var(--rule);
+      border-radius: 2px;
+      background: var(--accent-soft);
+    }
+    .shot figcaption {
+      margin: 0.5rem 0 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.45;
+    }
+    .shot figcaption strong { color: var(--ink); font-weight: 600; }
+
+    /* Research figures: never cropped. Figures in a row share one height. */
+    .figs { display: flex; flex-direction: column; gap: 1.75rem; margin: 0 0 0.5rem; }
+    .figs-row { display: flex; gap: 1.25rem; align-items: flex-start; }
+    .figs-row .shot { flex: var(--r, 1) 1 0; }
+
+    /* Photos: uniform square tiles, cropped to fill. Set --pos to move the focal point. */
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.25rem 1rem;
+      margin: 0 0 0.5rem;
+    }
+    .photo-grid.after-text { margin-top: 2rem; }
+    .photo-grid img {
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      object-position: var(--pos, 50% 50%);
+    }
+
+    @media (max-width: 52rem) {
+      .figs-row { flex-direction: column; }
+      .figs-row .shot { flex: none; width: 100%; }
+      .photo-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
     /* ---------- Courses ---------- */
     .course-list { list-style: none; margin: 0; padding: 0; }
     .course-list li {
@@ -294,7 +337,6 @@
       <ul class="contact-links">
         <li><a href="mailto:vlcastaneda@miuandes.cl">Email</a></li>
         <li><a href="https://www.linkedin.com/in/vlcp">LinkedIn</a></li>
-        <li><a href="https://orcid.org/0000-0002-8850-4806">ORCiD</a></li>
         <li><a href="CV_2026_EN.pdf">CV (PDF)</a></li>
       </ul>
     </header>
@@ -318,7 +360,22 @@
           Outside the lab, I do science outreach: I edited and wrote for Revista CiiB, ran scientific workshops with
           high schoolers, and tutored math and English for children whose schooling was disrupted by the pandemic.
         </p>
-      </section>
+
+        <!-- PHOTOS: replace each img src and alt with your file (e.g. images/lab-1.jpg). Tiles are cropped square; change --pos to move the focal point. -->
+<div class="photo-grid after-text" role="group" aria-label="Lab and graduation photos">
+  <figure class="shot" style="--pos: 50% 50%">
+    <img src="images/lab_pic1.jpg" alt="The lab team at Universidad de los Andes" loading="lazy">
+    <figcaption>Your real caption here.</figcaption>
+  </figure>
+  <figure class="shot" style="--pos: 50% 30%">
+    <img src="images/lab_pic2.jpg" alt="Describe what's in this photo" loading="lazy">
+    <figcaption>Your real caption here.</figcaption>
+  </figure>
+  <figure class="shot" style="--pos: 50% 25%">
+    <img src="images/graduation_engineer.PNG" alt="Verónica at her engineering graduation" loading="lazy">
+    <figcaption>Graduating as Engineer in Biotechnological Processes, Universidad San Francisco de Quito, 2020.</figcaption>
+  </figure>
+</div>
 
       <section id="research" aria-labelledby="research-h">
         <h2 id="research-h">Research</h2>
@@ -363,6 +420,37 @@
             <li><a href="https://www.nature.com/articles/s41598-024-57948-5">Paper</a></li>
           </ul>
         </article>
+
+        <h3>Selected figures</h3>
+        <!-- FIGURES: replace each img src and alt with your file (e.g. images/figure-1.png). Figures are never cropped; a small script sets each one's proportions automatically. -->
+        <div class="figs">
+          <div class="figs-row">
+          <figure class="shot" style="--r: 2.0">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='300' viewBox='0 0 600 300'%3E%3Crect width='600' height='300' fill='rgba%28120%2C135%2C150%2C0.18%29'/%3E%3Crect x='8' y='8' width='584' height='284' fill='none' stroke='rgba%28120%2C135%2C150%2C0.5%29' stroke-width='1.5' stroke-dasharray='6 5'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' font-family='sans-serif' font-size='20' fill='rgb%28100%2C115%2C130%29'%3EFigure 1%3C/text%3E%3Ctext x='50%25' y='50%25' dy='24' text-anchor='middle' font-family='sans-serif' font-size='14' fill='rgb%28100%2C115%2C130%29'%3Ewide 2:1%3C/text%3E%3C/svg%3E" alt="Placeholder for figure 1" width="600" height="300" loading="lazy">
+            <figcaption><strong>Figure 1.</strong> Placeholder: key result from the lncRNA and chondrogenesis project. Add one sentence on what it shows.</figcaption>
+          </figure>
+          </div>
+          <div class="figs-row">
+          <figure class="shot" style="--r: 1.33">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='399' height='300' viewBox='0 0 399 300'%3E%3Crect width='399' height='300' fill='rgba%28120%2C135%2C150%2C0.18%29'/%3E%3Crect x='8' y='8' width='383' height='284' fill='none' stroke='rgba%28120%2C135%2C150%2C0.5%29' stroke-width='1.5' stroke-dasharray='6 5'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' font-family='sans-serif' font-size='20' fill='rgb%28100%2C115%2C130%29'%3EFigure 2%3C/text%3E%3Ctext x='50%25' y='50%25' dy='24' text-anchor='middle' font-family='sans-serif' font-size='14' fill='rgb%28100%2C115%2C130%29'%3Elandscape 4:3%3C/text%3E%3C/svg%3E" alt="Placeholder for figure 2" width="399" height="300" loading="lazy">
+            <figcaption><strong>Figure 2.</strong> Placeholder: aging and frailty biomarkers in spaceflight (<em>Scientific Reports</em>, 2024).</figcaption>
+          </figure>
+          <figure class="shot" style="--r: 0.8">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='375' viewBox='0 0 300 375'%3E%3Crect width='300' height='375' fill='rgba%28120%2C135%2C150%2C0.18%29'/%3E%3Crect x='8' y='8' width='284' height='359' fill='none' stroke='rgba%28120%2C135%2C150%2C0.5%29' stroke-width='1.5' stroke-dasharray='6 5'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' font-family='sans-serif' font-size='20' fill='rgb%28100%2C115%2C130%29'%3EFigure 3%3C/text%3E%3Ctext x='50%25' y='50%25' dy='24' text-anchor='middle' font-family='sans-serif' font-size='14' fill='rgb%28100%2C115%2C130%29'%3Eportrait 4:5%3C/text%3E%3C/svg%3E" alt="Placeholder for figure 3" width="300" height="375" loading="lazy">
+            <figcaption><strong>Figure 3.</strong> Placeholder: extracellular vesicles for knee osteoarthritis (<em>Journal of Nanobiotechnology</em>, 2025).</figcaption>
+          </figure>
+          </div>
+          <div class="figs-row">
+          <figure class="shot" style="--r: 1.0">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300' viewBox='0 0 300 300'%3E%3Crect width='300' height='300' fill='rgba%28120%2C135%2C150%2C0.18%29'/%3E%3Crect x='8' y='8' width='284' height='284' fill='none' stroke='rgba%28120%2C135%2C150%2C0.5%29' stroke-width='1.5' stroke-dasharray='6 5'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' font-family='sans-serif' font-size='20' fill='rgb%28100%2C115%2C130%29'%3EFigure 4%3C/text%3E%3Ctext x='50%25' y='50%25' dy='24' text-anchor='middle' font-family='sans-serif' font-size='14' fill='rgb%28100%2C115%2C130%29'%3Esquare 1:1%3C/text%3E%3C/svg%3E" alt="Placeholder for figure 4" width="300" height="300" loading="lazy">
+            <figcaption><strong>Figure 4.</strong> Placeholder: space omics (<em>Nature</em>, 2024).</figcaption>
+          </figure>
+          <figure class="shot" style="--r: 1.6">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='480' height='300' viewBox='0 0 480 300'%3E%3Crect width='480' height='300' fill='rgba%28120%2C135%2C150%2C0.18%29'/%3E%3Crect x='8' y='8' width='464' height='284' fill='none' stroke='rgba%28120%2C135%2C150%2C0.5%29' stroke-width='1.5' stroke-dasharray='6 5'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' font-family='sans-serif' font-size='20' fill='rgb%28100%2C115%2C130%29'%3EFigure 5%3C/text%3E%3Ctext x='50%25' y='50%25' dy='24' text-anchor='middle' font-family='sans-serif' font-size='14' fill='rgb%28100%2C115%2C130%29'%3Elandscape 16:10%3C/text%3E%3C/svg%3E" alt="Placeholder for figure 5" width="480" height="300" loading="lazy">
+            <figcaption><strong>Figure 5.</strong> Placeholder: mitochondria and aging (MitoAging or MitoCeption, 2022).</figcaption>
+          </figure>
+          </div>
+        </div>
 
         <h3>Methods and tools</h3>
         <p>
@@ -534,6 +622,35 @@
             <li><a href="https://www.isct-cytotherapy.org/article/S1465-3249(21)00545-4/fulltext">Abstract</a></li>
           </ul>
         </article>
+
+        <h3>Conference photos</h3>
+        <!-- PHOTOS: replace each img src and alt with your file (e.g. images/conference-1.jpg). -->
+        <div class="photo-grid">
+          <figure class="shot" style="--pos: 50% 50%">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='399' height='300' viewBox='0 0 399 300'%3E%3Crect width='399' height='300' fill='rgba%28120%2C135%2C150%2C0.18%29'/%3E%3Crect x='8' y='8' width='383' height='284' fill='none' stroke='rgba%28120%2C135%2C150%2C0.5%29' stroke-width='1.5' stroke-dasharray='6 5'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' font-family='sans-serif' font-size='20' fill='rgb%28100%2C115%2C130%29'%3EConference photo 1%3C/text%3E%3Ctext x='50%25' y='50%25' dy='24' text-anchor='middle' font-family='sans-serif' font-size='14' fill='rgb%28100%2C115%2C130%29'%3Elandscape 4:3%3C/text%3E%3C/svg%3E" alt="Placeholder for conference photo 1" width="399" height="300" loading="lazy">
+            <figcaption>Placeholder: poster session at EMBL The Complex Life of RNA, October 2022.</figcaption>
+          </figure>
+          <figure class="shot" style="--pos: 50% 30%">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='400' viewBox='0 0 300 400'%3E%3Crect width='300' height='400' fill='rgba%28120%2C135%2C150%2C0.18%29'/%3E%3Crect x='8' y='8' width='284' height='384' fill='none' stroke='rgba%28120%2C135%2C150%2C0.5%29' stroke-width='1.5' stroke-dasharray='6 5'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' font-family='sans-serif' font-size='20' fill='rgb%28100%2C115%2C130%29'%3EConference photo 2%3C/text%3E%3Ctext x='50%25' y='50%25' dy='24' text-anchor='middle' font-family='sans-serif' font-size='14' fill='rgb%28100%2C115%2C130%29'%3Eportrait 3:4%3C/text%3E%3C/svg%3E" alt="Placeholder for conference photo 2" width="300" height="400" loading="lazy">
+            <figcaption>Placeholder: presenting at the NYSCF conference, October 2023.</figcaption>
+          </figure>
+          <figure class="shot" style="--pos: 50% 50%">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='534' height='300' viewBox='0 0 534 300'%3E%3Crect width='534' height='300' fill='rgba%28120%2C135%2C150%2C0.18%29'/%3E%3Crect x='8' y='8' width='518' height='284' fill='none' stroke='rgba%28120%2C135%2C150%2C0.5%29' stroke-width='1.5' stroke-dasharray='6 5'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' font-family='sans-serif' font-size='20' fill='rgb%28100%2C115%2C130%29'%3EConference photo 3%3C/text%3E%3Ctext x='50%25' y='50%25' dy='24' text-anchor='middle' font-family='sans-serif' font-size='14' fill='rgb%28100%2C115%2C130%29'%3Ewide 16:9%3C/text%3E%3C/svg%3E" alt="Placeholder for conference photo 3" width="534" height="300" loading="lazy">
+            <figcaption>Placeholder: Chilean Society for Biochemistry and Molecular Biology, La Serena, October 2023.</figcaption>
+          </figure>
+          <figure class="shot" style="--pos: 50% 30%">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='400' viewBox='0 0 300 400'%3E%3Crect width='300' height='400' fill='rgba%28120%2C135%2C150%2C0.18%29'/%3E%3Crect x='8' y='8' width='284' height='384' fill='none' stroke='rgba%28120%2C135%2C150%2C0.5%29' stroke-width='1.5' stroke-dasharray='6 5'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' font-family='sans-serif' font-size='20' fill='rgb%28100%2C115%2C130%29'%3EConference photo 4%3C/text%3E%3Ctext x='50%25' y='50%25' dy='24' text-anchor='middle' font-family='sans-serif' font-size='14' fill='rgb%28100%2C115%2C130%29'%3Eportrait 3:4%3C/text%3E%3C/svg%3E" alt="Placeholder for conference photo 4" width="300" height="400" loading="lazy">
+            <figcaption>Placeholder: NESS at Harvard Medical School, April 2022.</figcaption>
+          </figure>
+          <figure class="shot" style="--pos: 50% 50%">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300' viewBox='0 0 300 300'%3E%3Crect width='300' height='300' fill='rgba%28120%2C135%2C150%2C0.18%29'/%3E%3Crect x='8' y='8' width='284' height='284' fill='none' stroke='rgba%28120%2C135%2C150%2C0.5%29' stroke-width='1.5' stroke-dasharray='6 5'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' font-family='sans-serif' font-size='20' fill='rgb%28100%2C115%2C130%29'%3EConference photo 5%3C/text%3E%3Ctext x='50%25' y='50%25' dy='24' text-anchor='middle' font-family='sans-serif' font-size='14' fill='rgb%28100%2C115%2C130%29'%3Esquare 1:1%3C/text%3E%3C/svg%3E" alt="Placeholder for conference photo 5" width="300" height="300" loading="lazy">
+            <figcaption>Placeholder: ISCT, New Orleans, May 2021.</figcaption>
+          </figure>
+          <figure class="shot" style="--pos: 50% 50%">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='450' height='300' viewBox='0 0 450 300'%3E%3Crect width='450' height='300' fill='rgba%28120%2C135%2C150%2C0.18%29'/%3E%3Crect x='8' y='8' width='434' height='284' fill='none' stroke='rgba%28120%2C135%2C150%2C0.5%29' stroke-width='1.5' stroke-dasharray='6 5'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' font-family='sans-serif' font-size='20' fill='rgb%28100%2C115%2C130%29'%3EConference photo 6%3C/text%3E%3Ctext x='50%25' y='50%25' dy='24' text-anchor='middle' font-family='sans-serif' font-size='14' fill='rgb%28100%2C115%2C130%29'%3Elandscape 3:2%3C/text%3E%3C/svg%3E" alt="Placeholder for conference photo 6" width="450" height="300" loading="lazy">
+            <figcaption>Placeholder: with collaborators, describe where and when.</figcaption>
+          </figure>
+        </div>
       </section>
 
       <section id="teaching" aria-labelledby="teaching-h">
@@ -683,6 +800,16 @@
       window.addEventListener('scroll', update, { passive: true });
       window.addEventListener('resize', update);
       update();
+    })();
+
+    // Sizes each research figure in proportion to its real width and height.
+    (function () {
+      document.querySelectorAll('.figs-row .shot img').forEach(function (img) {
+        function set() {
+          if (img.naturalHeight) img.closest('.shot').style.setProperty('--r', img.naturalWidth / img.naturalHeight);
+        }
+        if (img.complete) set(); else img.addEventListener('load', set);
+      });
     })();
   </script>
 </body>
